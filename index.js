@@ -1,13 +1,12 @@
-const Employee = require('Employee');
-const Engineer = require('Engineer');
-const Intern = require('Intern');
-const Manager = require('Manager');
 const inquirer = require('inquirer');
+const Engineer = require('./Engineer');
+const Intern = require('./Intern');
+const Manager = require('./Manager');
 const path = require('path');
 const fs = require('fs');
-const render = require('renderHtml');
-const outputDir = path.resolve(__dirname, 'output');
-const outputPath = path.join(outputDir, 'team.html');
+const render = require('./renderHtml');
+const OUTPUT_DIR = path.resolve(__dirname, 'output');
+const outputPath = path.join(OUTPUT_DIR, 'team.html');
 const teamPro = []
 
 function employeeQues() {
@@ -115,3 +114,12 @@ function managerQues(baseAnswers) {
         }
     })
 }
+
+function buildTeam() {
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        fs.mkdirSync(OUTPUT_DIR)
+    }
+    fs.writeFileSync(outputPath, render(teamPro), 'utf-8');
+}
+
+employeeQues();
