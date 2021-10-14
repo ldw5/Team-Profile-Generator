@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const profilesDir = path.resolve(__dirname, './profiles')
+const profilesDir = path.resolve(__dirname, './profiles');
 
 const render = employees => {
     const html = [];
