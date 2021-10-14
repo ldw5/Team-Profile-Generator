@@ -2,6 +2,7 @@ const inquirer = require('inquirer');
 const Engineer = require('./Engineer');
 const Intern = require('./Intern');
 const Manager = require('./Manager');
+const generateSite = require('./generate-site');
 const path = require('path');
 const fs = require('fs');
 const render = require('./renderHtml');
@@ -119,7 +120,7 @@ function buildTeam() {
     if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR)
     }
-    fs.writeFileSync(outputPath, render(teamPro), 'utf-8');
+    fs.writeFileSync(outputPath, generateSite(teamPro), 'utf-8');
 }
 
 employeeQues();
